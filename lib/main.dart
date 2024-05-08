@@ -8,6 +8,7 @@ import 'package:try_something/login/send_mail.dart';
 
 void main() {
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: true,
     initialRoute: 'login',
     routes: {
       'login': (context) => MyLogin(),

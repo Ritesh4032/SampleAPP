@@ -1,13 +1,23 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:try_something/travel_interface/interface2.dart';
 
 class MyInterface extends StatelessWidget {
-  // Define a list of image paths
-  final List<String> imagePaths = [
-    'assets/images/namchebazaar.jpg',
-    'assets/images/bouddha.jpg',
-    'assets/images/pokhara.jpg',
-    // Add more image paths as needed
+  final List<Map<String, dynamic>> imgList = [
+    {
+      'image': 'assets/images/bouddha.jpg',
+      'text': 'Boudhha,kathmandu',
+    },
+    {
+      'image': 'assets/images/pokhara.jpg',
+      'text': 'Fewataal,Pokhara',
+    },
+    {
+      'image': 'assets/images/mountain.png',
+      'text': 'Rara,Nepal',
+    },
   ];
 
   @override
@@ -16,9 +26,8 @@ class MyInterface extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Destination",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.pink),
         ),
-        elevation: 0,
         actions: [
           IconButton(
             icon: Icon(Icons.search),
@@ -31,26 +40,39 @@ class MyInterface extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.4,
-              child: ListView.builder(
-                itemCount: 3,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) => Container(
-                  height: 100,
-                  color: Colors.green,
-                  child: Column(
-                    children: [
-                      Image.asset(
-                        // Access the image path corresponding to the card index
-                        imagePaths[index % imagePaths.length],
-                        fit: BoxFit.cover,
-                        height: MediaQuery.sizeOf(context).height * 0.4,
-                        width: MediaQuery.sizeOf(context).width,
+            CarouselSlider(
+              items: imgList.map((item) {
+                return Stack(
+                  children: [
+                    Container(
+                      height: 700,
+                      margin: EdgeInsets.symmetric(horizontal: 8.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                          image: AssetImage(item['image']),
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ],
-                  ),
-                ),
+                    ),
+                    Positioned(
+                      bottom: 10.0,
+                      left: 10.0,
+                      child: Text(
+                        item['text'],
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }).toList(),
+              options: CarouselOptions(
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 3),
               ),
             ),
             Interface2(),
