@@ -20,12 +20,18 @@ class _Interface2State extends State<Interface2> {
             children: [
               Text(
                 "Hot Destination",
-                style: TextStyle(color: Colors.red, fontSize: 17),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    color: Color.fromARGB(255, 15, 97, 17),
+                    fontSize: 17),
               ),
               Spacer(),
               Text(
                 "More>",
-                style: TextStyle(color: Colors.red, fontSize: 17),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    color: Color.fromARGB(255, 15, 97, 17),
+                    fontSize: 17),
               ),
             ],
           ),

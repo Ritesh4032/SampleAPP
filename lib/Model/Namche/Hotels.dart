@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Hotels extends StatefulWidget {
@@ -82,7 +81,14 @@ class _HotelsState extends State<Hotels> {
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.blue),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              _showDatePickerDialog(context);
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //       builder: (context) => ShowDate(),
+                              //     ));
+                            },
                             child: Text(
                               'Show Prices',
                               style: TextStyle(color: Colors.white),
@@ -163,7 +169,9 @@ class _HotelsState extends State<Hotels> {
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.blue),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              _showDatePickerDialog(context);
+                            },
                             child: Text(
                               'Show Prices',
                               style: TextStyle(color: Colors.white),
@@ -264,6 +272,40 @@ class _HotelsState extends State<Hotels> {
           ],
         ),
       ),
+    );
+  }
+}
+
+Future<void> _showDatePickerDialog(BuildContext context) async {
+  final DateTime? picked = await showDatePicker(
+    context: context,
+    initialDate: DateTime.now(),
+    firstDate: DateTime(2020),
+    lastDate: DateTime(2025),
+  );
+  if (picked != null) {
+    print('Selected Date: $picked');
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Selected Date'),
+          content: Text('You picked: $picked'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Close'),
+            ),
+            TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Available Prices',
+                ))
+          ],
+        );
+      },
     );
   }
 }

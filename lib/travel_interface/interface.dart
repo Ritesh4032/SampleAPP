@@ -23,14 +23,16 @@ class MyInterface extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 192, 218, 231),
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         title: Text(
           "Destination",
-          style: TextStyle(color: Colors.pink),
+          style: TextStyle(color: Colors.black),
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.notifications),
             onPressed: () {
               // Add your search functionality here
             },
@@ -74,6 +76,10 @@ class MyInterface extends StatelessWidget {
                 autoPlay: true,
                 autoPlayInterval: Duration(seconds: 3),
               ),
+            ),
+            SizedBox(height: 10),
+            Image.asset(
+              'assets/images/girl.jpg',
             ),
             Interface2(),
           ],
